@@ -1,0 +1,13 @@
+nth_rewrite 1 [pow_two]
+rw [mul_add, add_mul, add_mul]
+rw [← pow_two]
+rw [← add_assoc]
+rw [mul_comm b a]
+rw [add_assoc (a ^ 2)]
+rw [← two_mul]
+rw [← pow_two]
+rw [add_assoc]
+rw [← mul_assoc]
+rw [add_comm (2 * a * b)]
+rw [← add_assoc]
+rfl
