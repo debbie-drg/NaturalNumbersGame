@@ -1,2 +1,2 @@
-rw [add_zero, add_zero]
+repeat rw [add_zero]
 rfl

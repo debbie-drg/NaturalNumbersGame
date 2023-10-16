@@ -1,2 +1,3 @@
-rw [one_eq_succ_zero, add_succ, add_zero]
+rw [add_zero c]
+rw [add_zero b]
 rfl
