@@ -1,4 +1,4 @@
-intro h
-rw [add_comm] at h
-apply add_left_eq_self at h
-exact h
+cases hx with a ha
+symm at ha
+apply eq_zero_of_add_right_eq_zero at ha
+exact ha
