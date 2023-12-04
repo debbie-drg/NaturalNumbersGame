@@ -1,10 +1,10 @@
-induction b with d hd
-
+cases b with d
+rw [add_zero]
 intro h
-rw [add_zero] at h
 exact h
 
+rw [add_succ]
 intro h
-apply hd
-rw [add_succ] at h
-contradiction
+by_contra h'
+apply zero_ne_succ
+exact h.symm
