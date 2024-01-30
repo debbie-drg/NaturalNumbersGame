@@ -79,7 +79,21 @@
     "MyNat.le_antisymm",
     "left",
     "right",
-    "MyNat.le_total"
+    "MyNat.le_total",
+    "LE",
+    "MyNat.succ_le_succ",
+    "MyNat.le_one",
+    "MyNat.le_two",
+    "MyNat.mul_le_mul_right",
+    "MyNat.mul_left_ne_zero",
+    "MyNat.eq_succ_of_ne_zero",
+    "MyNat.one_le_of_ne_zero",
+    "MyNat.le_mul_right",
+    "have",
+    "MyNat.mul_right_eq_one",
+    "MyNat.mul_ne_zero",
+    "MyNat.mul_eq_zero",
+    "MyNat.mul_right_eq_self"
   ],
   "openedIntro": true,
   "data": {
@@ -863,10 +877,10 @@
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 4,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 4,
-            "positionColumn": 1
+            "selectionStartLineNumber": 3,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 3,
+            "positionColumn": 4
           }
         ],
         "help": []
@@ -876,10 +890,10 @@
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 4,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 4,
-            "positionColumn": 1
+            "selectionStartLineNumber": 3,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 3,
+            "positionColumn": 4
           }
         ],
         "help": []
@@ -889,10 +903,10 @@
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 4,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 4,
-            "positionColumn": 1
+            "selectionStartLineNumber": 3,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 3,
+            "positionColumn": 4
           }
         ],
         "help": []
@@ -911,27 +925,27 @@
         "help": []
       },
       "5": {
-        "code": "cases hx with a ha\nrw [eq_zero_of_add_right_eq_zero x a]\nrfl\nexact ha.symm\n",
+        "code": "cases hx with a ha\nexact add_right_eq_zero x a ha.symm\n",
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 5,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 5,
+            "selectionStartLineNumber": 2,
+            "selectionStartColumn": 36,
+            "positionLineNumber": 1,
             "positionColumn": 1
           }
         ],
         "help": []
       },
       "6": {
-        "code": "cases hxy with a ha\ncases hyx with b hb\n\nrw [hb] at ha\nsymm at ha\nnth_rewrite 2 [← add_zero y] at ha\nrw [add_assoc y b a] at ha\napply add_left_cancel (b + a) 0 y at ha\nrw [add_comm] at ha\napply eq_zero_of_add_left_eq_zero at ha\nrw [ha] at hb\nrw [add_zero] at hb\nexact hb\n",
+        "code": "cases hxy with a ha\ncases hyx with b hb\nrw [ha]\nrw [ha, add_assoc] at hb\nsymm at hb\napply add_right_eq_self at hb\napply add_right_eq_zero at hb\nrw [hb, add_zero]\nrfl",
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 14,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 14,
-            "positionColumn": 1
+            "selectionStartLineNumber": 9,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 9,
+            "positionColumn": 4
           }
         ],
         "help": []
@@ -941,22 +955,195 @@
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 6,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 6,
-            "positionColumn": 1
+            "selectionStartLineNumber": 5,
+            "selectionStartColumn": 9,
+            "positionLineNumber": 5,
+            "positionColumn": 9
           }
         ],
         "help": []
       },
       "8": {
-        "code": "induction y with d hd\n\n-- base case\nright\nexact zero_le x\n\n-- general case\ncases hd with h1 h2\nleft\ncases h1 with a ha\nuse (a + 1)\nrw [succ_eq_add_one, ha, ← add_assoc]\nrfl\n\ncases h2 with a ha\ninduction a \n\nleft\nuse 1\nrw [ha, add_zero, succ_eq_add_one]\nrfl\n\nright\nuse n\nrw [ha, succ_eq_add_one, succ_eq_add_one, add_comm n 1, ← add_assoc]\nrfl\n\n",
+        "code": "induction y with d hd\n-- base case\nright\nexact zero_le x\n-- general case\ncases hd with h1 h2\nleft\ncases h1 with a ha\nuse (a + 1)\nrw [succ_eq_add_one, ha, ← add_assoc]\nrfl\ncases h2 with a ha\ninduction a \nleft\nuse 1\nrw [ha, add_zero, succ_eq_add_one]\nrfl\nright\nuse n\nrw [ha, succ_eq_add_one, succ_eq_add_one, add_comm n 1, ← add_assoc]\nrfl\n",
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 28,
+            "selectionStartLineNumber": 22,
             "selectionStartColumn": 1,
-            "positionLineNumber": 28,
+            "positionLineNumber": 22,
+            "positionColumn": 1
+          }
+        ],
+        "help": []
+      },
+      "9": {
+        "code": "cases hx with d hd\nuse d\nrw [succ_add] at hd\napply succ_inj at hd\nexact hd\n",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 5,
+            "selectionStartColumn": 9,
+            "positionLineNumber": 1,
+            "positionColumn": 1
+          }
+        ],
+        "help": []
+      },
+      "10": {
+        "code": "cases x with y\n· left\n  rfl\n· rw [one_eq_succ_zero] at hx\n  apply succ_le_succ at hx\n  apply le_zero at hx\n  rw [hx]\n  right\n  rw [one_eq_succ_zero]\n  rfl\n  ",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 10,
+            "selectionStartColumn": 6,
+            "positionLineNumber": 10,
+            "positionColumn": 6
+          }
+        ],
+        "help": []
+      },
+      "11": {
+        "code": "cases x with y\n· left\n  rfl\n· cases y with z\n  · right\n    left\n    rw [← one_eq_succ_zero]\n    rfl\n  · rw [two_eq_succ_one, one_eq_succ_zero] at hx\n    apply succ_le_succ at hx\n    apply succ_le_succ at hx\n    apply le_zero at hx\n    rw [hx]\n    right\n    right\n    rw [← one_eq_succ_zero, ← two_eq_succ_one]\n    rfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 17,
+            "selectionStartColumn": 8,
+            "positionLineNumber": 1,
+            "positionColumn": 1
+          }
+        ],
+        "help": []
+      }
+    },
+    "AdvMultiplication": {
+      "1": {
+        "code": "cases h with d hd\nuse d * t\nrw [hd, add_mul]\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 4,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 4,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "2": {
+        "code": "contrapose! h\nrw [h, mul_zero]\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 3,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 3,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "3": {
+        "code": "cases a with d\ncontrapose ha\ntauto\nuse d\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 3,
+            "selectionStartColumn": 6,
+            "positionLineNumber": 3,
+            "positionColumn": 6
+          }
+        ],
+        "help": []
+      },
+      "4": {
+        "code": "cases eq_succ_of_ne_zero a ha\nrw [h, one_eq_succ_zero]\nuse w\nrw [succ_add, zero_add]\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 5,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 5,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "5": {
+        "code": "apply mul_left_ne_zero at h\napply one_le_of_ne_zero at h\napply mul_le_mul_right 1 b a at h\nrw [one_mul, mul_comm] at h\nexact h",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 5,
+            "selectionStartColumn": 8,
+            "positionLineNumber": 5,
+            "positionColumn": 8
+          }
+        ],
+        "help": []
+      },
+      "6": {
+        "code": "have h2 : x * y ≠ 0 := by\n  rw [h]\n  exact one_ne_zero\napply le_mul_right at h2\nrw [h] at h2\napply le_one at h2\ncases h2 with h0 h1\n· rw [h0, zero_mul] at h\n  tauto\n· exact h1",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 10,
+            "selectionStartColumn": 11,
+            "positionLineNumber": 10,
+            "positionColumn": 11
+          }
+        ],
+        "help": []
+      },
+      "7": {
+        "code": "apply eq_succ_of_ne_zero at ha\napply eq_succ_of_ne_zero at hb\ncases ha with pa ha\ncases hb with pb hb\nrw [ha, hb, mul_succ, add_succ]\nsymm\nexact zero_ne_succ _",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 7,
+            "selectionStartColumn": 21,
+            "positionLineNumber": 7,
+            "positionColumn": 21
+          }
+        ],
+        "help": []
+      },
+      "8": {
+        "code": "have h2 := mul_ne_zero a b\ntauto",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 2,
+            "selectionStartColumn": 6,
+            "positionLineNumber": 2,
+            "positionColumn": 6
+          }
+        ],
+        "help": [
+          0
+        ]
+      },
+      "9": {
+        "code": "induction b with d hd generalizing c\n· rw [mul_zero] at h\n  symm at h\n  apply mul_eq_zero at h\n  cases h with ha hc\n  · tauto\n  · exact hc.symm\n· cases c with e\n  · rw [mul_succ, mul_zero] at h\n    apply add_left_eq_zero at h\n    tauto\n  · rw [mul_succ, mul_succ] at h\n    apply add_right_cancel at h\n    apply hd at h\n    rw [h]\n    rfl\n",
+        "completed": false,
+        "selections": [
+          {
+            "selectionStartLineNumber": 17,
+            "selectionStartColumn": 1,
+            "positionLineNumber": 17,
+            "positionColumn": 1
+          }
+        ],
+        "help": []
+      },
+      "10": {
+        "code": "nth_rewrite 2 [← mul_one a] at h\nexact mul_left_cancel a b 1 ha h",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 1,
+            "selectionStartColumn": 1,
+            "positionLineNumber": 1,
             "positionColumn": 1
           }
         ],
@@ -964,5 +1151,6 @@
       }
     }
   },
-  "difficulty": 2
+  "difficulty": 2,
+  "typewriterMode": true
 }
